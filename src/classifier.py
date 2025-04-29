@@ -15,6 +15,7 @@ FILE_CLASSES = {
     "drivers_licence": ["licence", "license", "driver", "driver", "driving", "driving"],
     "bank_statement": ["bank statement", "bank stmt", "statement", "bank report"],
     "invoice": ["invoice", "inv", "bill", "receipt", "tax invoice"],
+    "passport": ["passport", "travel document"],
 }
 
 

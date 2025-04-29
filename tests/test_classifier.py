@@ -90,6 +90,9 @@ def test_scanned_pdf_ocr_fallback(file_name: str, expected_class: str) -> None:
         ("invoice_2.pdf", "invoice"),
         ("invoice_3.pdf", "invoice"),
         ("invoice_4.docx", "invoice"),
+        ("passport_1.jpg", "passport"),
+        ("passport_2.jpg", "passport"),
+        ("passport_3.jpg", "passport"),
     ],
 )
 def test_classify_file(file_name: str, expected_class: str) -> None:
