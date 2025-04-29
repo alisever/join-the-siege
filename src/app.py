@@ -4,7 +4,7 @@ from src.classifier import classify_file
 
 app = Flask(__name__)
 
-ALLOWED_EXTENSIONS = {"pdf", "png", "jpg"}
+ALLOWED_EXTENSIONS = {"pdf", "png", "jpg", "docx"}
 
 
 def allowed_file(filename: str) -> bool:
