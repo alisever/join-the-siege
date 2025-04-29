@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, Response, jsonify, request
 
 from src.classifier import classify_file
 
@@ -7,12 +7,12 @@ app = Flask(__name__)
 ALLOWED_EXTENSIONS = {"pdf", "png", "jpg"}
 
 
-def allowed_file(filename):
+def allowed_file(filename: str) -> bool:
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route("/classify_file", methods=["POST"])
-def classify_file_route():
+def classify_file_route() -> tuple[Response, int]:
     if "file" not in request.files:
         return jsonify({"error": "No file part in the request"}), 400
 

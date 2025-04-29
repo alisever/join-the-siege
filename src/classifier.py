@@ -1,9 +1,8 @@
 import logging
 import os
 
-from werkzeug.datastructures import FileStorage
 from rapidfuzz import fuzz
-
+from werkzeug.datastructures import FileStorage
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +18,7 @@ FILE_CLASSES = [
 def classify_file(file: FileStorage) -> str:
     filename = file.filename.lower()
     filename = os.path.splitext(filename)[0]
-    # file_bytes = file.read()
+    # file_bytes = file.read()  # noqa ERA001
 
     best_match, best_score = "unknown_file", 0
 
@@ -29,10 +28,7 @@ def classify_file(file: FileStorage) -> str:
             best_match, best_score = classification, score
 
     if best_score < MINIMUM_CONFIDENCE:
-        logger.warning(
-            "Low confidence classification for %s: %s with score %s"
-            % (file.filename, best_match, best_score)
-        )
+        logger.warning("Low confidence classification for %s: %s with score %s", file.filename, best_match, best_score)
         return "unknown_file"
 
     return best_match

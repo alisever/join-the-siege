@@ -1,15 +1,16 @@
 import os
 from io import BytesIO
 
-from werkzeug.datastructures import FileStorage
 import pytest
+from werkzeug.datastructures import FileStorage
+
 from src.classifier import classify_file
 
 FILES_FOLDER = os.path.join(os.path.dirname(__file__), "../files")
 
 
 @pytest.mark.parametrize(
-    "file_name, expected_class",
+    ("file_name", "expected_class"),
     [
         ("bank_statement_1.pdf", "bank_statement"),
         ("bank_statement_2.pdf", "bank_statement"),
@@ -27,7 +28,7 @@ FILES_FOLDER = os.path.join(os.path.dirname(__file__), "../files")
         ("unknown_file_5.png", "unknown_file"),
     ],
 )
-def test_classify_file(file_name, expected_class):
+def test_classify_file(file_name: str, expected_class: str) -> None:
     dummy_file = FileStorage(
         stream=BytesIO(b"Dummy data"),
         filename=file_name,
