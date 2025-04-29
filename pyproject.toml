@@ -47,7 +47,6 @@ select = [
     "TCH",
     "INT",
     "ARG",
-    "FIX",
     "ERA",
     "PL",
     "FLY",

@@ -9,8 +9,10 @@ from src.extract_text import extract_text
 
 logger = logging.getLogger(__name__)
 
+# TODO: Determine the optimal value using test data
 MINIMUM_CONFIDENCE = 70
 
+# TODO: This would be better with training a model
 FILE_CLASSES = {
     "drivers_licence": ["licence", "license", "driver", "driver", "driving", "driving"],
     "bank_statement": ["bank statement", "bank stmt", "statement", "bank report"],
@@ -32,6 +34,7 @@ def classify_file(file: FileStorage) -> str:
     finally:
         os.unlink(file_path)
 
+    # TODO: Analyse the two inputs separately, rather than combining them
     combined_text = f"{filename} {file_text}"
 
     scores = {}
@@ -44,6 +47,7 @@ def classify_file(file: FileStorage) -> str:
                 logger.warning("Keyword match for %s: %s with score %s", classification, keyword, keyword_score)
         scores[classification] = score
 
+    # TODO: Return top N matches instead of just the best match
     sorted_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
 
     best_match, best_score = sorted_scores[0]

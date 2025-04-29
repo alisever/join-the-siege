@@ -7,7 +7,7 @@ import magic
 import pytesseract
 from PIL import Image
 
-MINIMUM_PDF_TEXT_LENGTH = 10
+MINIMUM_PDF_TEXT_LENGTH = 20
 
 # Set the tesseract_cmd path for Windows
 if platform.startswith("win32"):
@@ -29,6 +29,8 @@ def is_docx_file(file_path: str) -> bool:
 
 
 def extract_text(file_path: str) -> str:
+    # TODO: Add logging, maximum file sizes and error handling
+    # TODO: Add support for more file types
     mime_type = detect_mime_type(file_path)
 
     if mime_type == "application/pdf":
